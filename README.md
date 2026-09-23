@@ -21,11 +21,7 @@
 
 ## What This Does
 
-<!-- Three or four sentences. Which corpus you picked, and the kinds of
-     questions your system answers. Write it for someone who has never seen
-     this repo.
-
-     Milestone 5. -->
+This system answers questions about campus life at a university, using student-written posts, admin notices, and course reviews as its source material. It covers topics like housing (room quality, laundry, noise), course workload and exam formats, dining hall wait times, and administrative deadlines (registration, withdrawal, permits). Questions are answered only from the retrieved documents, with sources always cited, and questions outside the corpus's scope are refused rather than guessed at.
 
 ## Chunking Strategy
 
@@ -131,23 +127,13 @@ There's a clean gap of about 0.44 between the in-corpus and out-of-corpus groups
 
 ## How I Used AI
 
-<!-- Two specific moments. For each: what you asked for, what came back, and
-     what you changed about it.
 
-     "I asked Claude to write the chunking function from my notes. It ignored
-     the overlap, so I added that myself" is the level of detail we're after.
-     "I used AI to help me code" is not.
 
-     Milestone 5. -->
+**1.** Chunker moment: I used AI to write a custom chunker for my corpus. From that I got the pragraph aware strategy with a size floor and ceiling. I ran it and compared the output against the starter's chunker both produced identical chunks counts and stats. Which proves my corpus didn't need a differentchunking approach after all. 
 
-**1.**
+**2.** For setup errors: I asked Claude to help fix a Python environment error (chroma-hnswlib failing to compile on Windows due to missing SDK headers). After several failed fixes with VS Build Tools and manual environment variables, I changed approach and moved to Google Colab instead — where Claude then helped me work around Colab's broken venv (no ensurepip) by manually bootstrapping pip.
 
-**2.**
 
-<!-- ── Stretch features ─────────────────────────────────────────────────────
-     Doing one? Say so here BEFORE you start. A feature this README never
-     claims earns nothing.
-     ───────────────────────────────────────────────────────────────────────── -->
 
 ---
 
