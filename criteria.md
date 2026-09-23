@@ -62,7 +62,9 @@ After running "python app.py --corpus campus_life chunks -n 5"
 At least 5 sampled chunks read as complete thoughts, self-contained thoughts with no cut-off sentences at either edge.
 
 **Why this target:**
+
 After executing the Milestone 1 index, the data that has been observed from running 5 sample chunks is that all these chunks hold up as complete, self-contained thoughts with no cut-off sentences and no fragments, and each one is answerable on its own showed 88 chunks total, with an average of 317 characters; the shortest is 178; the longest is 549.
+
 ---
 
 ## 5. Your choice
