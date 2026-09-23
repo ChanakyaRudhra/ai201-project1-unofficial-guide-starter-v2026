@@ -80,25 +80,60 @@ def fallback_split(
     return chunks
 
 
-def split_documents(documents: list[Document]) -> list[Chunk]:
+def split_documents(
+    documents: list[Document], min_size: int = 150, max_size: int = 600
+) -> list[Chunk]:
     """
-    Split documents into chunks. ⚠️ REPLACE THE BODY OF THIS IN MILESTONE 3.
+    Paragraph-aware chunking for short, structured posts.
 
-    Right now it just calls the fallback. That is the plain, generic behaviour
-    the brief is talking about.
-
-    When you write your own strategy, set `produced_by` to
-    "chunker.py::split_documents" so your README's Sample Chunks section names
-    the right function. `app.py chunks` prints that string for you.
-
-    Things worth thinking about before you write any code:
-      - Are your documents short posts or long guides?
-      - Is the useful information in one sentence, or spread over a paragraph?
-      - Would splitting on paragraph breaks keep more thoughts intact than
-        splitting on a character count?
+    campus_life documents are short (average ~317 characters) and built from
+    a handful of paragraphs — often just a heading plus one or two body
+    paragraphs, but some files (multi-reply threads, dining follow-ups) hold
+    several independent paragraphs. Splitting on a fixed character count
+    risks cutting a paragraph in half; splitting on every paragraph break
+    risks tiny fragments (a lone heading, a one-line reply). This strategy
+    splits on blank-line paragraph breaks, then greedily merges neighboring
+    paragraphs into a chunk until it reaches `min_size`, so no chunk falls
+    below a length where it stops being answerable on its own — while
+    capping at `max_size` so a chunk doesn't grow to cover unrelated
+    paragraphs.
     """
-    return fallback_split(documents)
+    chunks: list[Chunk] = []
 
+    for doc in documents:
+        paragraphs = [p.strip() for p in doc.text.split("\n\n") if p.strip()]
+
+        merged: list[str] = []
+        current = ""
+
+        for para in paragraphs:
+            if not current:
+                current = para
+            elif len(current) < min_size:
+                current = current + "\n\n" + para
+            elif len(current) + len(para) + 2 <= max_size:
+                current = current + "\n\n" + para
+            else:
+                merged.append(current)
+                current = para
+
+        if current:
+            if merged and len(current) < min_size:
+                merged[-1] = merged[-1] + "\n\n" + current
+            else:
+                merged.append(current)
+
+        for i, text in enumerate(merged):
+            chunks.append(
+                Chunk(
+                    text=text,
+                    source=doc.source,
+                    index=i,
+                    produced_by="chunker.py::split_documents",
+                )
+            )
+
+    return chunks
 
 def describe(chunks: list[Chunk]) -> str:
     """A one-line summary, printed after indexing."""
