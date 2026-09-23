@@ -1,4 +1,4 @@
-# Acceptance criteria — The Unofficial Guide
+# Acceptance criteria - The Unofficial Guide
 
 Five criteria that say what "working" means for this system, written in unit 1
 **before** any results existed.
@@ -24,7 +24,7 @@ contains the answer.
 
 **Why this target:**
 
-My 5 test questions cover distinct, well-documented topics (housing, courses, dining, admin deadlines), so I expect most to retrieve cleanly — my test runs showed distances between 0.179 and 0.382, all correct. I'm leaving room for 1 miss since some corpus topics (like a single dining hall's specific policy) are covered by only one or two documents, which gives retrieval less to work with if a question is phrased differently than the source text.
+My 5 test questions cover distinct, well-documented topics (housing, courses, dining, admin deadlines), so I expect most to retrieve cleanly - my test runs showed distances between 0.179 and 0.382, all correct. I'm leaving room for 1 miss since some corpus topics (like a single dining hall's specific policy) are covered by only one or two documents, which gives retrieval less to work with if a question is phrased differently than the source text.
 
 ---
 
@@ -34,19 +34,19 @@ Every answer the system produces names at least one source document.
 
 **Why this target:**
 
-The starter's GROUNDING_INSTRUCTION requires every answer to name its source document, and this held in all 5 of my test runs. I expect this to be near-guaranteed rather than just likely, since it's enforced by the prompt template itself rather than depending on retrieval quality — the only way it fails is if the model ignores an explicit instruction, which is rare.
+The starter's GROUNDING_INSTRUCTION requires every answer to name its source document, and this held in all 5 of my test runs. I expect this to be near-guaranteed rather than just likely, since it's enforced by the prompt template itself rather than depending on retrieval quality - the only way it fails is if the model ignores an explicit instruction, which is rare.
 
 ---
 
 ## 3. The relevance gate stops out-of-corpus questions
 
 When I ask a question my documents clearly don't cover, the relevance gate
-stops it and the system returns "I don't have enough information about that" —
+stops it and the system returns "I don't have enough information about that" -
 in at least 4 of 5 tries.
 
 **Why this target:**
 
-_(Pending Milestone 4 — will fill in once I've run the OUT_OF_SCOPE questions and set the relevance cutoff.)_
+(Pending Milestone 4 - will fill in once I have run the OUT_OF_SCOPE questions and set the relevance cutoff.)
 
 ---
 
