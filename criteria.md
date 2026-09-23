@@ -23,8 +23,8 @@ For at least 4 of my 5 test questions, the retrieved chunks include one that
 contains the answer.
 
 **Why this target:**
-<!-- e.g. "One of my questions is about a topic only two documents mention, so
-     I expect that one to be hard." -->
+
+My 5 test questions cover distinct, well-documented topics (housing, courses, dining, admin deadlines), so I expect most to retrieve cleanly — my test runs showed distances between 0.179 and 0.382, all correct. I'm leaving room for 1 miss since some corpus topics (like a single dining hall's specific policy) are covered by only one or two documents, which gives retrieval less to work with if a question is phrased differently than the source text.
 
 ---
 
@@ -33,8 +33,8 @@ contains the answer.
 Every answer the system produces names at least one source document.
 
 **Why this target:**
-<!-- Why all five and not four? What about your setup makes that achievable —
-     or what would have to go wrong for it not to be? -->
+
+The starter's GROUNDING_INSTRUCTION requires every answer to name its source document, and this held in all 5 of my test runs. I expect this to be near-guaranteed rather than just likely, since it's enforced by the prompt template itself rather than depending on retrieval quality — the only way it fails is if the model ignores an explicit instruction, which is rare.
 
 ---
 
