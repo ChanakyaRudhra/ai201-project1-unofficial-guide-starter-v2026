@@ -46,7 +46,14 @@ in at least 4 of 5 tries.
 
 **Why this target:**
 
-(Pending Milestone 4 - will fill in once I have run the OUT_OF_SCOPE questions and set the relevance cutoff.)
+I ran 5 in-scope test questions and 5 out-of-scope questions to find the
+cutoff. In-scope best distances ranged from 0.179 to 0.382; out-of-scope
+best distances ranged from 0.825 to 0.934 — a clean gap of about 0.44 with
+no overlap. The starter's default cutoff of 0.6 sits comfortably in that
+gap, so I kept it rather than changing it. At this cutoff, all 5 in-scope
+questions passed the gate and all 5 out-of-scope questions were correctly
+refused (5 of 5 both ways), so I'm confident 4 of 5 is an achievable
+standard going forward, even on questions I haven't tested yet.
 
 ---
 
