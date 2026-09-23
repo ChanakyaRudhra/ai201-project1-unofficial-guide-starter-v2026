@@ -57,41 +57,27 @@ in at least 4 of 5 tries.
 
 ## 4. Something about your chunks
 
-<!-- YOU WRITE THIS ONE.
+After running "python app.py --corpus campus_life chunks -n 5"
 
-     How would you know if your chunks were the right size? Name something
-     countable or observable.
-
-     Examples of the right shape — don't copy these, they should come from
-     what you actually saw in Milestone 3:
-       - "At least 4 of 5 sampled chunks read as a complete thought, with no
-          sentence cut in half at either end."
-       - "No chunk is shorter than 200 characters, since anything below that
-          in my corpus turned out to be a heading with no content under it." -->
-
-
+At least 5 sampled chunks read as complete thoughts, self-contained thoughts with no cut-off sentences at either edge.
 
 **Why this target:**
-
-
-
+After executing the Milestone 1 index, the data that has been observed from running 5 sample chunks is that all these chunks hold up as complete, self-contained thoughts with no cut-off sentences and no fragments, and each one is answerable on its own showed 88 chunks total, with an average of 317 characters; the shortest is 178; the longest is 549.
 ---
 
 ## 5. Your choice
 
-<!-- YOU WRITE THIS ONE TOO.
-
-     Pick something you actually care about getting right. It could be about
-     speed, about refusals, about a particular kind of question your corpus
-     handles badly, about source attribution being correct rather than merely
-     present — anything, as long as it names a number or an observable
-     outcome. -->
-
-
+At least 4 of 5 test questions cite the single most specific source file for their topic, not a broader file from the same topic cluster.
 
 **Why this target:**
 
-
+The corpus splits many topics across multiple related files. For example,
+housing topics have a base file and "_laundry" and "_noise" variants
+(housing_morrow_house_laundry.txt, housing_morrow_house_noise.txt), and
+course topics are split into "_workload" and "_exams" files. When I asked
+"Is laundry a problem in Morrow House?" it cited a correct file specifically
+(housing_morrow_house_laundry.txt), rather than the broader base file. All 5
+picked a correct variant.
 
 ---
 
