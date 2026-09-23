@@ -102,30 +102,32 @@ Laundry costs $1.75 to wash, $1.75 to dry, app-based. On noise: moderate; the bu
 
 ## Sample Answer
 
-<!-- One complete question and answer, pasted as text, with the source line
-     visible. Milestone 4. -->
-
-**Question:**
+**Question:** Is the housing lottery random?
 
 **Answer:**
 
 ```
+No, the housing lottery is not entirely random. Rising sophomores have their numbers drawn at random, but juniors and seniors are ordered by accumulated credit hours first, with random selection used only as a tie-breaker.
+
+Source: admin_housing_lottery.txt
 ```
 
-**My relevance cutoff:**
-
-<!-- The number you set in config.py, and how you got there.
-
-     You ran five questions your corpus covers and the five in OUT_OF_SCOPE
-     that it clearly doesn't, and wrote down the best distance for each. What
-     did those two groups look like? Where was the gap? Put the actual numbers
-     here — the table below wants all ten rows.
-
-     Milestone 4. -->
+**My relevance cutoff:** 0.6 (the starter's default — I tested it against my own data rather than changing it blindly; see the table below)
 
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+| Is the housing lottery random? | Yes | 0.284 |
+| How many hours a week does CS 210 take outside class? | Yes | 0.300 |
+| What's the deadline to withdraw from a course? | Yes | 0.382 |
+| Is laundry a problem in Morrow House? | Yes | 0.259 |
+| How long is the wait at Verrill Street Grill on Friday? | Yes | 0.179 |
+| What is the capital of Mongolia? | No | 0.825 |
+| How do I change the oil in a diesel engine? | No | 0.934 |
+| Who won the 1994 World Cup? | No | 0.886 |
+| What is the recommended dosage of ibuprofen for a headache? | No | 0.844 |
+| How do I write a for loop in Rust? | No | 0.896 |
+
+There's a clean gap of about 0.44 between the in-corpus and out-of-corpus groups, with no overlap. The starter's default cutoff of 0.6 sits comfortably in that gap, so I kept it rather than changing it.
 
 ## How I Used AI
 
