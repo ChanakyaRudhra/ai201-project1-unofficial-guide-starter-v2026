@@ -145,11 +145,11 @@ Produced by `run_eval.py::main` (retrieval: `store.py::search`, chunks from `chu
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 |  |
-| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 |  |
-| 4. Chunks read as complete thoughts | 5 of 5 | 5/5 | 5/5 | 5/5 |  |
-| 5. Cites single most specific source file | 4 of 5 | 4/5 | 4/5 | 4/5 |  |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Chunks read as complete thoughts | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 5. Cites single most specific source file | 4 of 5 | 4/5 | 4/5 | 4/5 | MET |
 
 **Criterion 1 real output** — `Is the housing lottery random?` — run 1 (from `results/run_2026-09-28_0307_before.md`):
 
@@ -192,22 +192,13 @@ Sources: `housing_morrow_house_laundry.txt` and `housing_morrow_house.txt`
 
 ## Verdicts
 
-<!-- MET or MISSED for each of the five, against the target you wrote last
-     unit — not a new one. Plus a sentence on how you decided. That sentence
-     matters most where it was close.
-
-     If your target said 4 of 5 and your runs came out 4, 3, 4, that's a MISS.
-     The target has to hold, not show up occasionally.
-
-     Milestone 2. -->
-
 | # | Criterion | Verdict | How I decided |
 |---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
+| 1 | Retrieved chunk contains the answer | MET | All 3 runs hit 5/5, exceeding the 4 of 5 target with no borderline cases - every answer's fact matched the expects phrase in questions.py. |
+| 2 | Every answer names a source | MET | All 3 runs hit 5/5, matching the target exactly - the Source: line appeared in every single answer with no exceptions. |
+| 3 | Gate stops out-of-corpus questions | MET | Measured once since the gate is deterministic - 5 of 5 refused, exceeding the 4 of 5 target. |
+| 4 | Chunks read as complete thoughts | MET | All 5 sampled chunks read as complete thoughts in this unit's re-run, matching the previous unit's result exactly since the chunker is deterministic. |
+| 5 | Cites single most specific source file | MET | Hit the 4 of 5 target in all 3 runs, but the same question (Morrow House laundry) failed identically every time - the model consistently cites both the specific file and its broader sibling rather than just the specific one. Flagging this as a stable pattern worth diagnosing even though it's a technical MET. |
 
 ## Diagnoses
 
