@@ -202,8 +202,6 @@ Sources: `housing_morrow_house_laundry.txt` and `housing_morrow_house.txt`
 
 ## Diagnoses
 
-## Diagnoses
-
 **Criterion 5 (MET, but flagged)** — hit 4 of 5 in every run, on the same failing question every time: "Is laundry a problem in Morrow House?"
 
 **Stage: Generation.** Using `--show-prompt`, both `housing_morrow_house_laundry.txt` and `housing_morrow_house.txt` were retrieved, and both are legitimately relevant — the base file's chunk does mention laundry ("Laundry costs $1.50 wash, $1.25 dry, coin or card"), so retrieval is not at fault. But only `housing_morrow_house_laundry.txt` contains the actual answer (the 8-washer/6-dryer ratio and the Sunday backup). The grounding instruction says "Name the document your answer came from" without telling the model to cite only the source(s) that actually supplied the cited fact, so when two overlapping-but-unequal chunks are present, the model names both rather than isolating the specific one.
