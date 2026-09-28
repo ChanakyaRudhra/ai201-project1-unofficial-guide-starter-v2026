@@ -251,17 +251,8 @@ Partially. Before the fix, criterion 5 landed at exactly 4/5 in all three runs �
 
 ## What's Still Broken
 
-<!-- For each criterion still missed after your fix: what you'd do about it,
-     and why you stopped where you did.
-
-     "I ran out of time" is fine if it's true. Pretending nothing is left is
-     not.
-
-     Milestone 5. -->
+Criterion 5 still slipped once (run 1 of 3) after the fix — the model reverted to citing both `housing_morrow_house_laundry.txt` and `housing_morrow_house.txt` even with the tightened instruction. The prompt change reduced the frequency of the failure but didn't eliminate it, because generation has inherent run-to-run variance that a static instruction can only partially constrain. A more reliable fix would likely require changing what gets retrieved in the first place — e.g. de-duplicating near-identical sentences across a hall's base file and its `_laundry` file at chunking or indexing time, so the overlapping chunk never reaches the model as a second option to cite. I stopped here because the assignment scopes this unit to one measured change, and the prompt-level fix was the more targeted, lower-risk option pointed at directly by my diagnosis — a chunking-level fix would be a second, larger change I haven't measured in isolation.
 
 ## What I'd Do Differently
 
-<!-- Knowing what you know now — which of your five criteria would you write
-     differently, and why?
-
-     Milestone 5. -->
+Looking back, criterion 5 is the one I'd rewrite. "Cites the single most specific source file" turned out to depend partly on corpus structure I didn't fully anticipate — several housing halls duplicate a sentence across their base file and their topic-specific file (laundry, noise), which makes "most specific" ambiguous exactly when both files genuinely contain the cited fact. I'd tighten the criterion itself to something like "for questions about a hall's laundry or noise, cites only the dedicated _laundry or _noise file, not the base hall file" — naming the actual structural pattern in my corpus rather than a general rule that turned out to have a predictable exception built into the data itself.
