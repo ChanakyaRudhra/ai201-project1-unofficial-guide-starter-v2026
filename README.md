@@ -231,6 +231,19 @@ Produced by `run_eval.py::main`. Same corpus, top-k, and cutoff as before. Full 
 
 **Criterion 5 real output (after)** — `Is laundry a problem in Morrow House?` — run 2, where the fix worked:
 
+```
+Yes, laundry can be a problem because there are eight washers and six dryers, which is the wrong ratio and causes the dryers to back up on Sunday evenings.
+
+Source: housing_morrow_house_laundry.txt
+```
+
+Compare to run 1 (after), where the old behavior still appeared:
+
+```
+Laundry can be an issue on Sunday evenings because the building has eight washers and six dryers, which is the wrong ratio and causes the dryers to back up.
+
+Sources: `housing_morrow_house_laundry.txt` and `housing_morrow_house.txt`
+```
 
 **Did it help?** 
 Partially. Before the fix, criterion 5 landed at exactly 4/5 in all three runs — the same question failed the same way every time. After the fix, it improved to 4/5, 5/5, 5/5 — the targeted mechanism (citing an overlapping broader file alongside the specific one) was resolved in 2 of 3 runs, but resurfaced once, since generation still has run-to-run variance the prompt change doesn't fully control. Criteria 1-4 held at their prior levels with no regression, so the change was net-positive but not a complete fix.
