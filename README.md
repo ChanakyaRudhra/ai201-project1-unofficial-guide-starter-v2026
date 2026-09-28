@@ -153,16 +153,42 @@ Produced by `run_eval.py::main` (retrieval: `store.py::search`, chunks from `chu
 
 **Criterion 1 real output** — `Is the housing lottery random?` — run 1 (from `results/run_2026-09-28_0307_before.md`):
 
+```
+The housing lottery is not entirely random; rising sophomores have a number drawn at random, but juniors and seniors are ordered by accumulated credit hours first, with random tie-breaks.
+
+Source: admin_housing_lottery.txt
+```
+
 
 **Criterion 2 real output** — every run across all 5 questions included an explicit `Source:` line; example above shows one.
 
 **Criterion 3 real output** — from `run_eval.py::check_out_of_scope`, cutoff 0.6:
 
+```
+refused  (best distance 0.825)  What is the capital of Mongolia?
+refused  (best distance 0.934)  How do I change the oil in a diesel engine?
+refused  (best distance 0.886)  Who won the 1994 World Cup?
+refused  (best distance 0.844)  What is the recommended dosage of ibuprofen for a headache?
+refused  (best distance 0.896)  How do I write a for loop in Rust?
+```
+
 
 **Criterion 4 real output** — `python app.py --corpus campus_life chunks -n 5`, produced by `chunker.py::split_documents`:
 
+```
+On the add/drop deadline
 
-**Criterion 5 real output** — `Is laundry a problem in Morrow House?` — run 1 (the pattern, not the exception):
+You can add a course through the end of the second week. Dropping is a longer window - through the end of week six - but a drop after week two shows as a W on your transcript. Nothing anywhere on the registrar's site says this plainly, and students find out from each other.
+```
+
+
+**Criterion 5 real output** — `Is laundry a problem in Morrow House?` — run 1 (the pattern, not the exception — all 3 runs cite both files):
+
+```
+Yes, dryers back up on Sunday evenings because there are eight washers and six dryers, which is the wrong ratio. Additionally, you will have to wait if you do laundry on Sunday after 6pm.
+
+Sources: `housing_morrow_house_laundry.txt` and `housing_morrow_house.txt`
+```
 
 ## Verdicts
 
