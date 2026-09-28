@@ -213,34 +213,28 @@ No criterion was outright missed. But criterion 5 sitting at exactly 4/5 in all 
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** Tightened the grounding instruction's citation rule in `generate.py`. Old: "Name the document your answer came from, using the filename given in each excerpt." New: "Name only the single document that directly supports the specific fact you state. If two documents mention the same topic but only one contains the detail you are citing, name only that one."
 
-**Why I picked it:**
-
-<!-- Connect it to a specific diagnosis above in one sentence. If you can't,
-     you picked a fix because it sounded impressive. -->
+**Why I picked it:** My Milestone 3 diagnosis found the Morrow House laundry over-citation was a generation-stage issue, not retrieval — both files were correctly retrieved, but the old instruction never told the model to prefer the one that actually supported the specific fact. This directly targets that mechanism.
 
 ### Run Log — After
 
-<!-- Same format, same five criteria, three runs each.
-     `python run_eval.py --label after` -->
+Produced by `run_eval.py::main`. Same corpus, top-k, and cutoff as before. Full file: `results/run_2026-09-28_0511_after.md`.
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Chunks read as complete thoughts | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 5. Cites single most specific source file | 4 of 5 | 4/5 | 5/5 | 5/5 | MET |
 
-**Did it help?**
+**Criterion 5 real output (after)** — `Is laundry a problem in Morrow House?` — run 2, where the fix worked:
 
-<!-- Say plainly whether it did, and how you know. If it made things worse,
-     say that — a change that backfired, honestly reported, earns full credit
-     and is more interesting than one that worked. What matters is that you can
-     tell.
 
-     Milestone 4. -->
+**Did it help?** 
+Partially. Before the fix, criterion 5 landed at exactly 4/5 in all three runs — the same question failed the same way every time. After the fix, it improved to 4/5, 5/5, 5/5 — the targeted mechanism (citing an overlapping broader file alongside the specific one) was resolved in 2 of 3 runs, but resurfaced once, since generation still has run-to-run variance the prompt change doesn't fully control. Criteria 1-4 held at their prior levels with no regression, so the change was net-positive but not a complete fix.
+
 
 ## What's Still Broken
 
