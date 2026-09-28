@@ -202,23 +202,16 @@ Sources: `housing_morrow_house_laundry.txt` and `housing_morrow_house.txt`
 
 ## Diagnoses
 
-<!-- For each miss: which stage caused it, and how. The stage alone isn't
-     enough — you need the mechanism.
+## Diagnoses
 
-     Not a diagnosis: "Question 3 didn't work."
-     A diagnosis:     "Question 3 asks about laundry costs. The answer is in
-                       one sentence that got split across two chunks, so
-                       neither chunk on its own contains it."
+**Criterion 5 (MET, but flagged)** — hit 4 of 5 in every run, on the same failing question every time: "Is laundry a problem in Morrow House?"
 
-     The five stages: loading → chunking → embedding → retrieval → generation.
+**Stage: Generation.** Using `--show-prompt`, both `housing_morrow_house_laundry.txt` and `housing_morrow_house.txt` were retrieved, and both are legitimately relevant — the base file's chunk does mention laundry ("Laundry costs $1.50 wash, $1.25 dry, coin or card"), so retrieval is not at fault. But only `housing_morrow_house_laundry.txt` contains the actual answer (the 8-washer/6-dryer ratio and the Sunday backup). The grounding instruction says "Name the document your answer came from" without telling the model to cite only the source(s) that actually supplied the cited fact, so when two overlapping-but-unequal chunks are present, the model names both rather than isolating the specific one.
 
-     Look for a pattern. If three misses all ask about numbers, that's one
-     problem, not three.
+**This is a pattern, not a one-off.** Every housing hall's base file duplicates a line from its own `_laundry` file (confirmed in `housing_old_brewhouse_laundry.txt`, `housing_innisfree_hall_laundry.txt`, and `housing_aldridge_hall_laundry.txt` too), so any hall-laundry question is likely to trigger the same over-citation, not just this one.
 
-     Missed nothing? Say so, then say honestly whether your targets were set
-     low, and which one you'd tighten and to what.
+No criterion was outright missed. But criterion 5 sitting at exactly 4/5 in all three runs, on an identifiable and repeatable mechanism, suggests the target wasn't set too loose — the system has a real, specific weakness that the criterion correctly caught.
 
-     Milestone 3. -->
 
 ## The Improvement
 
