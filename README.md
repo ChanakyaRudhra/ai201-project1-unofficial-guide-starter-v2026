@@ -141,7 +141,7 @@ There's a clean gap of about 0.44 between the in-corpus and out-of-corpus groups
 
 ## Run Log — Before
 
-Produced by 'run_eval.py::main' (retrieval: 'store.py::search', chunks from 'chunker.py::split_documents'). Corpus: campus_life, top-k 5, cutoff 0.6. 3 runs, caching off. Full file: 'results/run_2026-09-28_0307_before.md'.
+Produced by `run_eval.py::main` (retrieval: `store.py::search`, chunks from `chunker.py::split_documents`). Corpus: campus_life, top-k 5, cutoff 0.6. 3 runs, caching off. Full file: `results/run_2026-09-28_0307_before.md`.
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
@@ -151,18 +151,18 @@ Produced by 'run_eval.py::main' (retrieval: 'store.py::search', chunks from 'chu
 | 4. Chunks read as complete thoughts | 5 of 5 | 5/5 | 5/5 | 5/5 |  |
 | 5. Cites single most specific source file | 4 of 5 | 4/5 | 4/5 | 4/5 |  |
 
-**Criterion 1 real output** — 'Is the housing lottery random?'  — run 1 (from 'results/run_2026-09-28_0307_before.md'):
+**Criterion 1 real output** — `Is the housing lottery random?` — run 1 (from `results/run_2026-09-28_0307_before.md`):
 
 
-**Criterion 2 real output** — every run across all 5 questions included an explicit 'Source:' line; example above shows one.
+**Criterion 2 real output** — every run across all 5 questions included an explicit `Source:` line; example above shows one.
 
-**Criterion 3 real output** — from 'run_eval.py::check_out_of_scope', cutoff 0.6:
-
-
-**Criterion 4 real output** — 'python app.py --corpus campus_life chunks -n 5', produced by 'chunker.py::split_documents':
+**Criterion 3 real output** — from `run_eval.py::check_out_of_scope`, cutoff 0.6:
 
 
-**Criterion 5 real output** — 'Is laundry a problem in Morrow House?' — run 1 (the pattern, not the exception):
+**Criterion 4 real output** — `python app.py --corpus campus_life chunks -n 5`, produced by `chunker.py::split_documents`:
+
+
+**Criterion 5 real output** — `Is laundry a problem in Morrow House?` — run 1 (the pattern, not the exception):
 
 ## Verdicts
 
